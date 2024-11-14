@@ -17,7 +17,7 @@ def save_html(content, file_path):
     
 def generate_html(article_text):
 
-    prompt = "Reformat the following article text into HTML using structural tags. Mark places for images using <img src='image_placeholder.jpg' alt='image description prompt'> and add captions under the images using appropriate tags."
+    prompt = "Reformat the following article text into HTML using structural tags. Mark places for images using <img src='image_placeholder.jpg' alt='image description prompt'> and add captions under the images using appropriate tags. Return only content that i can paste between <body></body> tags."
     full_prompt = f"{prompt}\n\n{article_text}"
     
     response = client.chat.completions.create(
