@@ -4,7 +4,7 @@ article_path = 'tresc_artykulu.txt'
 html_output_path = 'artykul.html'
 
 client = OpenAI(
-    api_key="put your API key here"
+    api_key="put your openAI API key here"
 )
 
 def read_article(file_path):
@@ -17,7 +17,14 @@ def save_html(content, file_path):
     
 def generate_html(article_text):
 
-    prompt = "Reformat the following article text into HTML using structural tags. Mark places for images using <img src='image_placeholder.jpg' alt='image description prompt'> and add captions under the images using appropriate tags. Only return the HTML content without any extra text, comments, or the <body> tag. Just the HTML content between the body tags."
+    prompt = """
+    Reformat the following article text into HTML using structural tags. 
+    Mark places for images using <img src='image_placeholder.jpg' alt='image description prompt'> 
+    and add captions under the images using appropriate tags, image description prompt should describe 
+    thoroughly how image has to look like, caption stays short and simple. Only return the HTML content without 
+    any extra text, comments, or the <body> tag. Just the HTML content between the body tags. Do not add any 
+    extra content like footer, etc.
+    """
     full_prompt = f"{prompt}\n\n{article_text}"
     
     response = client.chat.completions.create(
